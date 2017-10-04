@@ -9,6 +9,7 @@ import './App.css';
 
 class App extends Component {
 
+  var
 
   constructor(props){
     super(props);
@@ -16,12 +17,13 @@ class App extends Component {
     this.state = {
       twitter_tweet_ids :[],
       screen_name: '',
-      users: []
+      users: [],
     }
 
  this.nameChanged = this.nameChanged.bind(this);
   this.test = this.test.bind(this);
   this.loadtweetids = this.loadtweetids.bind(this);
+  this.liketweets = this.liketweets.bind(this);
 
   }
 
@@ -36,25 +38,42 @@ class App extends Component {
       console.log(this.state.screen_name);
     }
 
-
   loadtweetids(url){
 
   fetch(url)
   .then(response => response.json())
   .then(json => {
     console.log(json);
-  })
-  .then(err => {
-    console.log(err);
-  });
+
+      this.setState(
+        {
+          twitter_tweet_ids: json
+        }
+      )
+
+  this.liketweets(this.state.twitter_tweet_ids);
+});
 
    }
 
-  // componentDidMount() {
-  //    fetch('/users')
-  //      .then(res => res.json())
-  //      .then(users => this.setState({ users }));
-  //  }
+ liketweets(twitterIDArray){
+
+ let url = `http://127.0.0.1:3002/users/like?id=`;
+ twitterIDArray.forEach((tweet,index) => {
+   console.log(tweet.id_str);
+   fetch(url+tweet.id_str)
+   .then(response => response.json())
+   .then(json => {
+     console.log(json)
+
+   })
+   .then(err => {
+     console.log(err);
+   });
+ })
+
+ }
+
 
 
   render() {
@@ -78,6 +97,10 @@ class App extends Component {
     //  </div>
     );
   }
+
+
+
+
 }
 
 export default App;
