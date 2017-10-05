@@ -9,10 +9,7 @@ var client = new twitter({
   // consumer_secret: 'Your credentials',
   // access_token_key: 'Your credentials',
   // access_token_secret: 'Your credentials'
-  consumer_key: 'X91LplW0ZVD5fpH3yxZ042SXj',
-  consumer_secret: 'ulHsYGdop4Ft9QzVdFjnPgfHsWcZathy5T5C3ou1ucC7sYbbGJ',
-  access_token_key: '579852381-5aeoVqFNcGywGCcsX8AvDr66tL3JDmV0IkLjwjw1',
-  access_token_secret: 'j88QEvTNBND7HyktblSprK7LFoXAaQ4qxYvIwvCZ82Qf8'
+
 });
 
 
