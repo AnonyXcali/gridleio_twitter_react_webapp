@@ -42,4 +42,26 @@
 
   </body>
   <script src="https://use.fontawesome.com/3c96f750e9.js"></script>
+  <script>
+  document.getElementById("searchUserBox")
+      .addEventListener("keyup", function(event) {
+      event.preventDefault();
+      if (event.keyCode === 13) {
+          document.getElementById("userSearchBtn").click();
+          var element = document.getElementById('heartId');
+
+element.addEventListener('webkitAnimationEnd', function(){
+    this.style.webkitAnimationName = '';
+}, false);
+
+document.getElementById('userSearchBtn').onclick = function(){
+    element.style.webkitAnimationName = 'fave-heart';
+    // you'll probably want to preventDefault here.
+};
+      }
+  });
+
+
+
+  </script>
 </html>

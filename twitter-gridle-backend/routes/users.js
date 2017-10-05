@@ -49,7 +49,7 @@ router.get('/like', function(req, res, next) {
   };
   client.post('favorites/create', params, function(error, tweets, response) {
     if (!error) {
-      console.log("Like ho gaya" + response);
+      console.log("Liked" + response);
       res.json(tweets);
     }else{
       res.json(error);

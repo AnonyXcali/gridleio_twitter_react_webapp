@@ -34,9 +34,19 @@ class App extends Component {
       message: 'Liked!',
       level: 'success'
     });
+  }else if( status === "fetching_tweets"){
+    this._notificationSystem.addNotification({
+      message: 'Fetch Tweets please wait!',
+      level: 'success'
+    });
+  }else if( status === "fetch_success"){
+    this._notificationSystem.addNotification({
+      message: '10 Tweets Successfully fetched!',
+      level: 'success'
+    });
   }else if( status === "error"){
     this._notificationSystem.addNotification({
-      message: 'Error Occured',
+      message: 'Error Occured / Already Liked',
       level: 'error'
     });
   }else if( status === "user_error"){
@@ -71,10 +81,11 @@ class App extends Component {
 
   loadtweetids(url){
 
+  this._addNotification("fetching_tweets");
+
   fetch(url)
   .then(function(response) {
        if (!response.ok) {
-         console.log('wtf');
           console.log(response.statusText);
        }
        return response;
@@ -88,6 +99,7 @@ class App extends Component {
 
     }else{
 
+      this._addNotification("fetch_success");
 
         this.setState(
           {
@@ -152,8 +164,9 @@ class App extends Component {
 
       <HeaderFile/>
     <a rel="noopener noreferrer" target="_blank" href="https://github.com/AnonyXcali/gridleio_twitter_react_webapp" className="githubLink"><i className="fa fa-github-alt" aria-hidden="true"></i></a>
-    <input className="style-2 inputBox solid" placeholder="Search a Twitter User" type='text' onChange={this.nameChanged} />
+  <input id="searchUserBox" className="style-2 inputBox solid" placeholder="Search a Twitter User" type='text' onChange={this.nameChanged} />
           <button
+            id = "userSearchBtn"
              className="btn striped-shadow blue"
              type="button"
              value="Click it!"
@@ -169,14 +182,12 @@ class App extends Component {
           <h1 className="statusNow">{this.state.tweet_combo} tweets liked!</h1>
 
     </div>
-
     );
   }
 
 
-
-
-
 }
+
+
 
 export default App;

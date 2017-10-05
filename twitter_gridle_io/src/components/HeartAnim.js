@@ -3,7 +3,7 @@ import React from 'react';
 const HeartAnimLoader = () => {
 
  return(
-<div className="heart"></div>
+<div id="heartId" className="heart"></div>
  )
 
 

@@ -80,8 +80,10 @@ input[type="text"]
 }
 
 .headerName h1{
-
+ color : #FFEE58;
   font-size : 200px;
+  -webkit-text-stroke-width: 3px;
+   -webkit-text-stroke-color: black;
 }
 
 *, :after, :before {
