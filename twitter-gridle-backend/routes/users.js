@@ -5,10 +5,10 @@ var request = require('request');
 var twitter = require('twitter');
 
 var client = new twitter({
-  consumer_key: "your-credentials",
-  consumer_secret: "your-credentials",
-  access_token_key: "your-credentials",
-  access_token_secret: "your-credentials"
+  consumer_key: 'Your credentials',
+  consumer_secret: 'Your credentials',
+  access_token_key: 'Your credentials',
+  access_token_secret: 'Your credentials'
 });
 
 
