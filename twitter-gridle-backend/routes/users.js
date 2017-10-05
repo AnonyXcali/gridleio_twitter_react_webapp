@@ -27,6 +27,9 @@ router.get('/', function(req, res, next) {
 
       console.log(tweets);
       res.json(tweets);
+    }else{
+      console.log(error);
+      res.json(error);
     }
   });
 

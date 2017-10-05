@@ -40,6 +40,11 @@ class App extends Component {
       message: 'Error Occured',
       level: 'error'
     });
+  }else if( status === "user_error"){
+    this._notificationSystem.addNotification({
+      message: 'User Does Not Exist!',
+      level: 'error'
+    });
   }
 
 
@@ -67,22 +72,32 @@ class App extends Component {
   .then(json => {
     console.log(json);
 
-    var image = json[0].user.profile_image_url_https;
-    var modImg = image.replace("_normal","");
+    if(json[0].code === 34){
+      this._addNotification("user_error");
+
+    }else{
+
+      var image = json[0].user.profile_image_url_https;
+      var modImg = image.replace("_normal","");
 
 
-      this.setState(
-        {
-          twitter_tweet_ids: json,
-          user_image : modImg,
-          followers_count : json[0].user.followers_count,
-          user_desc : json[0].user.description,
+        this.setState(
+          {
+            twitter_tweet_ids: json,
+            user_image : modImg,
+            followers_count : json[0].user.followers_count,
+            user_desc : json[0].user.description,
 
 
-        }
-      )
+          }
+        )
 
-  this.liketweets(this.state.twitter_tweet_ids);
+    this.liketweets(this.state.twitter_tweet_ids);
+    }
+
+
+}).then(err=>{
+  console.log(err);
 });
 
    }
