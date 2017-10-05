@@ -18,7 +18,6 @@ class App extends Component {
       user_desc : '',
       tweet_combo : 0,
       _notificationSystem: null
-
     }
 
  this.nameChanged = this.nameChanged.bind(this);
@@ -45,6 +44,11 @@ class App extends Component {
       message: 'User Does Not Exist!',
       level: 'error'
     });
+  }else if( status === "server_error"){
+    this._notificationSystem.addNotification({
+      message: 'Server Error , try restarting the backend',
+      level: 'error'
+    });
   }
 
 
@@ -68,6 +72,13 @@ class App extends Component {
   loadtweetids(url){
 
   fetch(url)
+  .then(function(response) {
+       if (!response.ok) {
+         console.log('wtf');
+          console.log(response.statusText);
+       }
+       return response;
+   })
   .then(response => response.json())
   .then(json => {
     console.log(json);
@@ -77,16 +88,12 @@ class App extends Component {
 
     }else{
 
-      var image = json[0].user.profile_image_url_https;
-      var modImg = image.replace("_normal","");
-
 
         this.setState(
           {
             twitter_tweet_ids: json,
-            user_image : modImg,
-            followers_count : json[0].user.followers_count,
-            user_desc : json[0].user.description,
+            // followers_count : json[0].user.followers_count,
+//            user_desc : json[0].user.description,
 
 
           }
@@ -96,9 +103,9 @@ class App extends Component {
     }
 
 
-}).then(err=>{
-  console.log(err);
-});
+}).catch(function(error) {
+     alert("Server Error , Please Check your Connection");
+    });
 
    }
 
@@ -144,6 +151,7 @@ class App extends Component {
       <NotificationSystem ref="notificationSystem" />
 
       <HeaderFile/>
+    <a rel="noopener noreferrer" target="_blank" href="https://github.com/AnonyXcali/gridleio_twitter_react_webapp" className="githubLink"><i className="fa fa-github-alt" aria-hidden="true"></i></a>
     <input className="style-2 inputBox solid" placeholder="Search a Twitter User" type='text' onChange={this.nameChanged} />
           <button
              className="btn striped-shadow blue"
@@ -154,7 +162,7 @@ class App extends Component {
            <HeartAnimLoader/>
 
           </button>
-          <a className="userName" href={`https://twitter.com/${this.state.screen_name}`}>
+          <a rel="noopener noreferrer" className="userName" target="_blank" href={`https://twitter.com/${this.state.screen_name}`}>
 <h1 >{`@${this.state.screen_name}`}<span className="atRate">_</span></h1>
 
           </a>
