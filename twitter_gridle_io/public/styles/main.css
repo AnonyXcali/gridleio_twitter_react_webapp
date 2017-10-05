@@ -87,7 +87,7 @@ button {
 //  margin: 1.8rem;
   grid-row:18/18;
   grid-column: 8/10;
-  background:#446CB3;
+  background:#9A12B3;
   margin-left:23px;
   height:200px;
 }
@@ -200,7 +200,7 @@ button.btn.striped-shadow:before {
   font-size:200px;
   grid-row: 5/10;
   grid-column: 12/16;
-  color:#36D7B7;
+  color:#500198;
 }
 
 .errorStatus{

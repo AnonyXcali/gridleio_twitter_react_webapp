@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import HeaderFile from './components/HeaderComponent';
-import InputAreaDiv from './components/InputArea';
 import HeartAnimLoader from './components/HeartAnim';
 import NotificationSystem from 'react-notification-system';
 
@@ -19,8 +17,6 @@ class App extends Component {
       followers_count : 0,
       user_desc : '',
       tweet_combo : 0,
-      error_status:'None',
-      status_clr :'green',
       _notificationSystem: null
 
     }
